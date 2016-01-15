@@ -10,6 +10,7 @@
 
         <field name="name" type="string" unique="true"/>
         <field name="position" type="integer"/>
+        <field name="routeContent" type="string" nullable="true"/>
 
     </entity>
 
