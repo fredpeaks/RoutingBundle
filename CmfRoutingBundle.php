@@ -85,16 +85,21 @@ class CmfRoutingBundle extends Bundle
         if (!$doctrineOrmCompiler) {
             return;
         }
-
+        $bundles = $container->getParameter('kernel.bundles');
+        $mappingDirs = array(
+            realpath(__DIR__.'/Resources/config/doctrine-model') => 'Symfony\Cmf\Bundle\RoutingBundle\Model',
+        );
+        if (!isset($bundles['CmfRoutingAutoBundle'])) {
+            $mappingDirs[realpath(__DIR__ . '/Resources/config/doctrine-orm-entity')] = 'Symfony\Cmf\Bundle\RoutingBundle\Doctrine\Orm';
+        } else  {
+            $mappingDirs[realpath(__DIR__ . '/Resources/config/doctrine-orm-superclass')] = 'Symfony\Cmf\Bundle\RoutingBundle\Doctrine\Orm';
+        }
         $container->addCompilerPass(
             $this->buildBaseCompilerPass($doctrineOrmCompiler, 'Doctrine\ORM\Mapping\Driver\XmlDriver', 'orm')
         );
         $container->addCompilerPass(
             $doctrineOrmCompiler::createXmlMappingDriver(
-                array(
-                    realpath(__DIR__.'/Resources/config/doctrine-model') => 'Symfony\Cmf\Bundle\RoutingBundle\Model',
-                    realpath(__DIR__.'/Resources/config/doctrine-orm') => 'Symfony\Cmf\Bundle\RoutingBundle\Doctrine\Orm',
-                ),
+                $mappingDirs,
                 array('cmf_routing.dynamic.persistence.orm.manager_name'),
                 'cmf_routing.backend_type_orm',
                 array('CmfRoutingBundle' => 'Symfony\Cmf\Bundle\RoutingBundle\Doctrine\Orm')

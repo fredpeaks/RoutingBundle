@@ -68,12 +68,6 @@ class CmfRoutingExtension extends Extension
                 $routeTypeTypeDefinition->addMethodCall('addRouteType', array($routeType));
             }
         }
-        $bundles = $container->getParameter('kernel.bundles');
-        if (!isset($bundles['CmfRoutingAutoBundle'])) {
-            //TODO load doctrine mapping to create Route entity
-        } else  {
-            //TODO load doctrine mapping to create mapped superclass...
-        }
     }
 
     /**
