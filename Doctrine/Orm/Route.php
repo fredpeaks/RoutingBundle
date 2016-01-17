@@ -11,16 +11,6 @@
 
 namespace Symfony\Cmf\Bundle\RoutingBundle\Doctrine\Orm;
 
-use Symfony\Cmf\Bundle\RoutingBundle\Model\Route as RouteModel;
-
-
-/**
- * The ORM route version.
- *
- * @author matteo caberlotto <mcaber@gmail.com>
- * @author Wouter J <waldio.webdesign@gmail.com>
- */
-class Route extends RouteModel
+class Route extends AbstractRoute
 {
-    use RouteEntityTrait;
 }

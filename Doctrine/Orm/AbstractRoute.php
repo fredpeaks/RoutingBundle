@@ -10,9 +10,17 @@
  */
 
 namespace Symfony\Cmf\Bundle\RoutingBundle\Doctrine\Orm;
-use Symfony\Cmf\Bundle\RoutingBundle\Resolver\OrmContentCodeResolver;
 
-trait RouteEntityTrait
+use Symfony\Cmf\Bundle\RoutingBundle\Resolver\OrmContentCodeResolver;
+use Symfony\Cmf\Bundle\RoutingBundle\Model\Route;
+
+/**
+ * The ORM route version.
+ *
+ * @author matteo caberlotto <mcaber@gmail.com>
+ * @author Wouter J <waldio.webdesign@gmail.com>
+ */
+abstract class AbstractRoute extends Route
 {
     protected $name;
     protected $position = 0;
