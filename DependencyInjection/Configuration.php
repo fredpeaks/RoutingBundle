@@ -169,6 +169,25 @@ class Configuration implements ConfigurationInterface
                                     ->canBeEnabled()
                                     ->children()
                                         ->scalarNode('manager_name')->defaultNull()->end()
+                                        ->enumNode('use_sonata_admin')
+                                            ->beforeNormalization()
+                                                ->ifString()
+                                                ->then(function ($v) {
+                                                    switch ($v) {
+                                                        case 'true':
+                                                            return true;
+
+                                                        case 'false':
+                                                            return false;
+
+                                                        default:
+                                                            return $v;
+                                                    }
+                                                })
+                                            ->end()
+                                            ->values(array(true, false, 'auto'))
+                                            ->defaultValue('auto')
+                                        ->end()
                                     ->end()
                                 ->end() // orm
                             ->end()
