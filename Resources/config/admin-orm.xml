@@ -14,7 +14,7 @@
     <services>
 
         <service id="cmf_routing.route_admin" class="%cmf_routing.route_admin.class%">
-            <tag name="sonata.admin" group="dashboard.cmf" label_catalogue="CmfRoutingBundle" label="dashboard.label_routing" label_translator_strategy="sonata.admin.label.strategy.underscore" />
+            <tag name="sonata.admin" manager_type="orm" group="dashboard.cmf" label_catalogue="CmfRoutingBundle" label="dashboard.label_routing" label_translator_strategy="sonata.admin.label.strategy.underscore" />
             <argument/>
             <argument>%cmf_routing.route_entity.class%</argument>
             <argument>SonataAdminBundle:CRUD</argument>
