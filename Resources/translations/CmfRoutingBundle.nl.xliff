@@ -106,6 +106,10 @@
         <source>form.label_add_trailing_slash</source>
         <target>Slash aan het eind toevoegen</target>
       </trans-unit>
+      <trans-unit id="form.label_static_prefix">
+        <source>form.label_static_prefix</source>
+        <target>Statische prefix</target>
+      </trans-unit>
       <trans-unit id="admin.menu_frontend_link_caption">
         <source>admin.menu_frontend_link_caption</source>
         <target>Frontend</target>
@@ -113,6 +117,30 @@
       <trans-unit id="admin.menu_frontend_link_title">
         <source>admin.menu_frontend_link_title</source>
         <target>Open de voorkant link in nieuw tabblad</target>
+      </trans-unit>
+      <trans-unit id="list.label_name">
+        <source>list.label_name</source>
+        <target>Naam</target>
+      </trans-unit>
+      <trans-unit id="list.label_static_prefix">
+        <source>list.label_static_prefix</source>
+        <target>Statische prefix</target>
+      </trans-unit>
+      <trans-unit id="list.label_variable_pattern">
+        <source>list.label_variable_pattern</source>
+        <target>Variabel patroon</target>
+      </trans-unit>
+      <trans-unit id="list.label__action">
+        <source>list.label__action</source>
+        <target>Actie</target>
+      </trans-unit>
+      <trans-unit id="filter.label_static_prefix">
+        <source>filter.label_static_prefix</source>
+        <target>Statische prefix</target>
+      </trans-unit>
+      <trans-unit id="filter.label_variable_pattern ">
+        <source>list.label_variable_pattern</source>
+        <target>Variabel patroon</target>
       </trans-unit>
     </body>
   </file>

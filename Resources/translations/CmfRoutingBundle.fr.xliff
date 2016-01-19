@@ -122,6 +122,10 @@
         <source>form.label_add_trailing_slash</source>
         <target>Ajouter une barre oblique en fin</target>
       </trans-unit>
+      <trans-unit id="form.label_static_prefix">
+        <source>form.label_static_prefix</source>
+        <target>Préfixe statique</target>
+      </trans-unit>
       <trans-unit id="form.help_options">
         <source>form.help_options</source>
         <target><![CDATA[
@@ -138,6 +142,30 @@
       <trans-unit id="admin.menu_frontend_link_title">
         <source>admin.menu_frontend_link_title</source>
         <target>Ouvrir ce front-end lien dans un nouvel onglet</target>
+      </trans-unit>
+      <trans-unit id="list.label_name">
+        <source>list.label_name</source>
+        <target>Nom</target>
+      </trans-unit>
+      <trans-unit id="list.label_static_prefix">
+        <source>list.label_static_prefix</source>
+        <target>Préfixe statique</target>
+      </trans-unit>
+      <trans-unit id="list.label_variable_pattern">
+        <source>list.label_variable_pattern</source>
+        <target>Motif variable</target>
+      </trans-unit>
+      <trans-unit id="list.label__action">
+        <source>list.label__action</source>
+        <target>Action</target>
+      </trans-unit>
+      <trans-unit id="filter.label_static_prefix">
+        <source>filter.label_static_prefix</source>
+        <target>Préfixe statique</target>
+      </trans-unit>
+      <trans-unit id="filter.label_variable_pattern ">
+        <source>list.label_variable_pattern</source>
+        <target>Motif variable</target>
       </trans-unit>
     </body>
   </file>

@@ -122,6 +122,10 @@
         <source>form.label_add_trailing_slash</source>
         <target>Add trailing slash</target>
       </trans-unit>
+      <trans-unit id="form.label_static_prefix">
+        <source>form.label_static_prefix</source>
+        <target>Static prefix</target>
+      </trans-unit>
       <trans-unit id="form.help_add_format_pattern">
         <source>form.help_options</source>
         <target>
@@ -139,6 +143,30 @@
       <trans-unit id="admin.menu_frontend_link_title">
         <source>admin.menu_frontend_link_title</source>
         <target>Open frontend view in new tab</target>
+      </trans-unit>
+      <trans-unit id="list.label_name">
+        <source>list.label_name</source>
+        <target>Name</target>
+      </trans-unit>
+      <trans-unit id="list.label_static_prefix">
+        <source>list.label_static_prefix</source>
+        <target>Static prefix</target>
+      </trans-unit>
+      <trans-unit id="list.label_variable_pattern">
+        <source>list.label_variable_pattern</source>
+        <target>Variable pattern</target>
+      </trans-unit>
+      <trans-unit id="list.label__action">
+        <source>list.label__action</source>
+        <target>Action</target>
+      </trans-unit>
+      <trans-unit id="filter.label_static_prefix">
+        <source>filter.label_static_prefix</source>
+        <target>Static prefix</target>
+      </trans-unit>
+      <trans-unit id="filter.label_variable_pattern ">
+        <source>list.label_variable_pattern</source>
+        <target>Variable pattern</target>
       </trans-unit>
     </body>
   </file>
