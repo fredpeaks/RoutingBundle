@@ -158,8 +158,7 @@ class RouteAdmin extends Admin
      */
     protected function configureFieldsForOptions(array $dynamicOptions)
     {
-        $isSf28 = method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix');
-        $checkboxType = $isSf28 ? 'Symfony\Component\Form\Extension\Core\Type\CheckboxType' : 'checkbox';
+        $checkboxType =  Sf2CompatUtil::getFormTypeName('checkbox');
 
         $options = array(
             'add_locale_pattern' => array('add_locale_pattern', $checkboxType, array('required' => false, 'label' => 'form.label_add_locale_pattern', 'translation_domain' => 'CmfRoutingBundle')),
