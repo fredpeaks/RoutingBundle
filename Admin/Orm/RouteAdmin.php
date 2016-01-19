@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace AppBundle\Admin\Orm;
+namespace Symfony\Cmf\Bundle\RoutingBundle\Admin\Orm;
 
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
