@@ -1,131 +1,91 @@
 <?php
 
-/*
- * This file is part of the Symfony CMF package.
- *
- * (c) 2011-2015 Symfony CMF
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+namespace AppBundle\Admin;
 
-namespace Symfony\Cmf\Bundle\RoutingBundle\Admin;
-
+use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
-use Symfony\Component\HttpKernel\Controller\ControllerResolverInterface;
-use Symfony\Cmf\Bundle\RoutingBundle\Model\Route;
+use Sonata\AdminBundle\Show\ShowMapper;
+use Symfony\Cmf\Bundle\RoutingBundle\Doctrine\Orm\Route;
 use Symfony\Cmf\Bundle\RoutingBundle\Util\Sf2CompatUtil;
-use PHPCR\Util\PathHelper;
 
 class RouteAdmin extends Admin
 {
     protected $translationDomain = 'CmfRoutingBundle';
 
     /**
-     * Root path for the route parent selection.
-     *
-     * @var string
+     * @param DatagridMapper $datagridMapper
      */
-    protected $routeRoot;
-
-    /**
-     * Root path for the route content selection.
-     *
-     * @var string
-     */
-    protected $contentRoot;
-
-    /**
-     * Full class name for content that can be referenced by a route.
-     *
-     * @var string
-     */
-    protected $contentClass;
-
-    /**
-     * @var ControllerResolverInterface
-     *
-     * @deprecated Since 1.4, use the RouteDefaults validator on your document.
-     */
-    protected $controllerResolver;
-
-    protected function configureListFields(ListMapper $listMapper)
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
-        $listMapper
-            ->addIdentifier('path', 'text')
+        $datagridMapper
+            ->add('name')
+            ->add('staticPrefix')
+            ->add('variablePattern')
         ;
     }
 
+    /**
+     * @param ListMapper $listMapper
+     */
+    protected function configureListFields(ListMapper $listMapper)
+    {
+        $listMapper
+            ->add('name')
+            ->add('staticPrefix')
+            ->add('variablePattern')
+            ->add('_action', 'actions', array(
+                'actions' => array(
+                    'show' => array(),
+                    'edit' => array(),
+                    'delete' => array(),
+                )
+            ))
+        ;
+    }
+
+    /**
+     * @param FormMapper $formMapper
+     */
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
             ->with('form.group_general', array(
                 'translation_domain' => 'CmfRoutingBundle',
             ))
+                ->add('staticPrefix')
+                ->add('variablePattern')
+            ->end()
+            ->with('form.group_advanced', array(
+                'translation_domain' => 'CmfRoutingBundle',
+            ))
+                ->add('variablePattern', Sf2CompatUtil::getFormTypeName('text'), array('required' => false), array('help' => 'form.help_variable_pattern'))
                 ->add(
-                    'parent',
-                    Sf2CompatUtil::getFormTypeName('doctrine_phpcr_odm_tree'),
-                    array('choice_list' => array(), 'select_root_node' => true, 'root_node' => $this->routeRoot)
+                    'defaults',
+                    Sf2CompatUtil::getFormTypeName('sonata_type_immutable_array'),
+                    array('keys' => $this->configureFieldsForDefaults($this->getSubject()->getDefaults()))
                 )
-                ->add('name', Sf2CompatUtil::getFormTypeName('text'))
-        ->end();
-
-        if (null === $this->getParentFieldDescription()) {
-            $formMapper
-                ->with('form.group_general', array(
-                    'translation_domain' => 'CmfRoutingBundle',
-                ))
-                    ->add('content', Sf2CompatUtil::getFormTypeName('doctrine_phpcr_odm_tree'), array('choice_list' => array(), 'required' => false, 'root_node' => $this->contentRoot))
-                ->end()
-                ->with('form.group_advanced', array(
-                    'translation_domain' => 'CmfRoutingBundle',
-                ))
-                    ->add('variablePattern', Sf2CompatUtil::getFormTypeName('text'), array('required' => false), array('help' => 'form.help_variable_pattern'))
-                    ->add(
-                        'defaults',
-                        Sf2CompatUtil::getFormTypeName('sonata_type_immutable_array'),
-                        array('keys' => $this->configureFieldsForDefaults($this->getSubject()->getDefaults()))
-                    )
-                    ->add(
-                        'options',
-                        Sf2CompatUtil::getFormTypeName('sonata_type_immutable_array'),
-                        array('keys' => $this->configureFieldsForOptions($this->getSubject()->getOptions())),
-                        array('help' => 'form.help_options')
-                    )
-                ->end()
-            ->end();
-        }
-    }
-
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
-    {
-        $datagridMapper
-            ->add('name', 'doctrine_phpcr_nodename');
-    }
-
-    public function setRouteRoot($routeRoot)
-    {
-        // make limitation on base path work
-        parent::setRootPath($routeRoot);
-        // TODO: fix widget to show root node when root is selectable
-        // https://github.com/sonata-project/SonataDoctrinePhpcrAdminBundle/issues/148
-        $this->routeRoot = PathHelper::getParentPath($routeRoot);
-    }
-
-    public function setContentRoot($contentRoot)
-    {
-        $this->contentRoot = $contentRoot;
+                ->add(
+                    'options',
+                    Sf2CompatUtil::getFormTypeName('sonata_type_immutable_array'),
+                    array('keys' => $this->configureFieldsForOptions($this->getSubject()->getOptions())),
+                    array('help' => 'form.help_options')
+                )
+            ->end()
+        ;
     }
 
     /**
-     * @deprecated Since 1.4, use the RouteDefaults validator on your document.
+     * @param ShowMapper $showMapper
      */
-    public function setControllerResolver($controllerResolver)
+    protected function configureShowFields(ShowMapper $showMapper)
     {
-        $this->controllerResolver = $controllerResolver;
+        $showMapper
+            ->add('name')
+            ->add('staticPrefix')
+            ->add('variablePattern')
+        ;
     }
 
     public function getExportFormats()

@@ -283,6 +283,20 @@ class CmfRoutingExtension extends Extension
             // remove the locales argument from the candidates
             $container->getDefinition('cmf_routing.orm_candidates')->setArguments(array());
         }
+
+        if ($config['use_sonata_admin']) {
+            $this->loadSonataOrmAdmin($config, $loader, $container);
+        }
+    }
+
+    private function loadSonataOrmAdmin($config, XmlFileLoader $loader, ContainerBuilder $container)
+    {
+        $bundles = $container->getParameter('kernel.bundles');
+        if ('auto' === $config['use_sonata_admin'] && !isset($bundles['SonataAdminBundle'])) {
+            return;
+        }
+
+        $loader->load('admin-orm.xml');
     }
 
     /**
