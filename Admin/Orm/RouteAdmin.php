@@ -92,7 +92,7 @@ class RouteAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('name')
+            ->add('name', null, array('label' => 'list.label_name'))
             ->add('staticPrefix')
             ->add('variablePattern')
         ;
