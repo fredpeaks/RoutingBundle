@@ -16,6 +16,7 @@ final class Sf2CompatUtil
     private static $isAtLeastSymfony28;
     private static $formTypes = array(
         'text' => 'Symfony\Component\Form\Extension\Core\Type\TextType',
+        'checkbox' => 'Symfony\Component\Form\Extension\Core\Type\CheckboxType',
         'doctrine_phpcr_odm_tree' => 'Sonata\DoctrinePHPCRAdminBundle\Form\Type\TreeModelType',
         'sonata_type_immutable_array' => 'Sonata\CoreBundle\Form\Type\ImmutableArrayType',
         'sonata_type_collection' => 'Sonata\CoreBundle\Form\Type\CollectionType',
