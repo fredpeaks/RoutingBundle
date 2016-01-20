@@ -63,6 +63,7 @@ class RouteAdmin extends Admin
             ->with('form.group_general', array(
                 'translation_domain' => 'CmfRoutingBundle',
             ))
+                ->add('name')
                 ->add('staticPrefix')
                 ->add('variablePattern')
             ->end()
