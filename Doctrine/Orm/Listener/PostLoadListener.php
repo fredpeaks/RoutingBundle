@@ -1,9 +1,8 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\RoutingBundle\Listener;
+namespace Symfony\Cmf\Bundle\RoutingBundle\Doctrine\Orm\Listener;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Symfony\Cmf\Bundle\RoutingAutoBundle\Doctrine\Orm\AutoRoute;
 use Symfony\Cmf\Bundle\RoutingBundle\Doctrine\Orm\Route;
 
 class PostLoadListener
@@ -21,7 +20,7 @@ class PostLoadListener
         $entity = $args->getEntity();
         $entityManager = $args->getEntityManager();
 
-        if ($entity instanceof Route || $entity instanceof AutoRoute) {
+        if ($entity instanceof Route) {
             /**
              * This binding is here to avoid circular dependency.
              * Check if resolver is already bound to an entityManager

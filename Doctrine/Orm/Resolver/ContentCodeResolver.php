@@ -1,8 +1,8 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\RoutingBundle\Resolver;
+namespace Symfony\Cmf\Bundle\RoutingBundle\Doctrine\Orm\Resolver;
 
-class OrmContentCodeResolver
+class ContentCodeResolver
 {
     protected $entityManager;
 

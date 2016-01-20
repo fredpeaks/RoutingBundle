@@ -11,7 +11,7 @@
 
 namespace Symfony\Cmf\Bundle\RoutingBundle\Doctrine\Orm;
 
-use Symfony\Cmf\Bundle\RoutingBundle\Resolver\OrmContentCodeResolver;
+use Symfony\Cmf\Bundle\RoutingBundle\Doctrine\Orm\Resolver\ContentCodeResolver;
 use Symfony\Cmf\Bundle\RoutingBundle\Model\Route as RouteModel;
 
 /**
@@ -40,7 +40,7 @@ class Route extends RouteModel
 
     /**
      * Content resolver
-     * @var OrmContentCodeResolver
+     * @var ContentCodeResolver
      */
     private $resolver;
 
@@ -158,7 +158,7 @@ class Route extends RouteModel
     }
 
     /**
-     * @return OrmContentCodeResolver
+     * @return ContentCodeResolver
      */
     public function getResolver()
     {
@@ -166,7 +166,7 @@ class Route extends RouteModel
     }
 
     /**
-     * @param OrmContentCodeResolver $resolver
+     * @param ContentCodeResolver $resolver
      * @return Route
      */
     public function setResolver($resolver)
