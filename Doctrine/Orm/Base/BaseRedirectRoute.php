@@ -13,6 +13,7 @@ namespace Symfony\Cmf\Bundle\RoutingBundle\Doctrine\Orm\Base;
 
 use LogicException;
 use Symfony\Cmf\Bundle\RoutingBundle\Doctrine\Orm\Route;
+use Symfony\Cmf\Component\Routing\RedirectRouteInterface;
 use Symfony\Component\Routing\Route as SymfonyRoute;
 
 /**
@@ -21,7 +22,7 @@ use Symfony\Component\Routing\Route as SymfonyRoute;
  * This extends the Route Entity to be able to create doctrine inheritance.
  * We need to re-implement everything that the RedirecRoute Model has.
  */
-class BaseRedirectRoute extends Route
+class BaseRedirectRoute extends Route implements RedirectRouteInterface
 {
     /**
      * Absolute uri to redirect to.
