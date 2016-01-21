@@ -11,11 +11,6 @@ class ContentCodeResolver
         $this->entityManager = $entityManager;
     }
 
-    public function setManagerName($entityManagerName)
-    {
-        $this->entityManager = $entityManager;
-    }
-
     public function getContent($routeObject)
     {
         $content = null;
