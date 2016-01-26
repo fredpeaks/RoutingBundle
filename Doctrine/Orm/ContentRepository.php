@@ -62,7 +62,7 @@ class ContentRepository extends DoctrineProvider implements ContentRepositoryInt
         try {
             $meta = $this->getObjectManager()->getClassMetadata(get_class($content));
             $ids = $meta->getIdentifierValues($content);
-            if (0 !== count($ids)) {
+            if (1 !== count($ids)) {
                 throw new \Exception('Multi identifier values not supported in '.get_class($content));
             }
 
