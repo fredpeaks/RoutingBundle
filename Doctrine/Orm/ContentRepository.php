@@ -11,6 +11,8 @@
 
 namespace Symfony\Cmf\Bundle\RoutingBundle\Doctrine\Orm;
 
+use Doctrine\Common\Persistence\ManagerRegistry;
+use Symfony\Cmf\Bundle\RoutingBundle\Doctrine\Orm\Resolver\ContentCodeResolver;
 use Symfony\Cmf\Component\Routing\ContentRepositoryInterface;
 use Symfony\Cmf\Bundle\RoutingBundle\Doctrine\DoctrineProvider;
 
@@ -26,28 +28,28 @@ use Symfony\Cmf\Bundle\RoutingBundle\Doctrine\DoctrineProvider;
  */
 class ContentRepository extends DoctrineProvider implements ContentRepositoryInterface
 {
+    private $contentCodeResolver;
+
     /**
-     * Determine target class and id for this content.
-     *
-     * @param mixed $identifier as produced by getContentId
-     *
-     * @return array with model first element, id second
+     * @param ManagerRegistry $managerRegistry
+     * @param string          $className
      */
-    protected function getModelAndId($identifier)
+    public function __construct(ManagerRegistry $managerRegistry, $className = null, ContentCodeResolver $contentCodeResolver)
     {
-        return explode(':', $identifier, 2);
+        $this->managerRegistry = $managerRegistry;
+        $this->className = $className;
+        $this->contentCodeResolver = $contentCodeResolver;
     }
+
 
     /**
      * {@inheritdoc}
      *
-     * @param string $id The ID contains both model name and id, separated by a colon.
+     * @param string $id The content code of the model.
      */
     public function findById($id)
     {
-        list($model, $modelId) = $this->getModelAndId($id);
-
-        return $this->getObjectManager()->getRepository($model)->find($modelId);
+        return $this->contentCodeResolver->getContent($id);
     }
 
     /**

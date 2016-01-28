@@ -53,7 +53,7 @@ class ContentRepositoryTest extends \PHPUnit_Framework_TestCase
         $contentRepository = new ContentRepository($this->managerRegistry);
         $contentRepository->setManagerName('default');
 
-        $foundDocument = $contentRepository->findById('stdClass:123');
+        $foundDocument = $contentRepository->findById('stdClass::123');
 
         $this->assertSame($this->document, $foundDocument);
     }

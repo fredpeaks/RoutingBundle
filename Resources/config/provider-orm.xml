@@ -16,6 +16,8 @@
 
         <service id="cmf_routing.orm_content_repository" class="%cmf_routing.orm.content_repository.class%">
             <argument type="service" id="doctrine"/>
+            <argument/>
+            <argument type="service" id="cmf_routing.orm.content_code_resolver"/>
             <call method="setManagerName"><argument>%cmf_routing.dynamic.persistence.orm.manager_name%</argument></call>
         </service>
 
