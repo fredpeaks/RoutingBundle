@@ -33,7 +33,8 @@ class ContentCodeResolver
     public function getContentCode($content, $field = 'id')
     {
         $getter = 'get' . ucfirst($field);
-        $contentCodeArray = array(get_class($content), $field, $content->$getter());
+        $class = $this->entityManager->getClassMetadata(get_class($content))->getName();
+        $contentCodeArray = array($class, $field, $content->$getter());
 
         // omit 'id' as it is implicit
         if ($field === 'id') {
